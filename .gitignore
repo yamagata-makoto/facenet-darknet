@@ -1,0 +1,8 @@
+darknet
+weights
+model
+data
+obj
+*.o
+*.so
+*.a
