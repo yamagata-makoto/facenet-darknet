@@ -24,7 +24,7 @@ Zenity for text input.
 sudo apt-get install zenity
 cd facenet-darknet-inference
 #edit makefile
-#specify your OPENCV_HEADER_DIR, OPENCV_LIBRARY_DIR, DLIB_HEADER_DIR, DLIB_LIBRARY_DIR, NNPACK_HEADER_DIR, NNPACK_LIBRARY_DIR
+#specify your DLIB_HEADER_DIR, DLIB_LIBRARY_DIR, NNPACK_HEADER_DIR, NNPACK_LIBRARY_DIR
 make
 ```
 
