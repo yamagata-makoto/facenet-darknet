@@ -21,6 +21,11 @@ ARCH= -gencode arch=compute_30,code=sm_30 \
 
 OS := $(shell uname)
 
+DLIB_HEADER_DIR = /home/makoto/opt/dlib
+DLIB_LIBRARY_DIR = /home/makoto/opt/dlib/build/dlib
+NNPACK_HEADER_DIR = /home/makoto/opt/NNPACK-darknet/include
+NNPACK_LIBRARY_DIR = /home/makoto/opt/NNPACK-darknet/lib
+
 # Tesla V100
 # ARCH= -gencode arch=compute_70,code=[sm_70,compute_70]
 
@@ -56,8 +61,9 @@ CC=gcc
 CPP=g++
 NVCC=nvcc
 OPTS=-Ofast
-LDFLAGS= -lm -pthread
+LDFLAGS= -lm -pthread -ldlib -lnnpack
 COMMON= -I./src -I./darknet_src/include/ -I./darknet_src/3rdparty/stb/include
+COMMON+= -I$(DLIB_HEADER_DIR) -I$(NNPACK_HEADER_DIR)
 CFLAGS=-Wall -Wfatal-errors -Wno-unused-result -Wno-unknown-pragmas -fPIC
 
 ifeq ($(DEBUG), 1)
@@ -86,12 +92,12 @@ LDFLAGS+= -lgomp
 endif
 
 ifeq ($(GPU), 1)
-COMMON+= -DGPU -I/usr/local/cuda/include/ -I/home/makoto/opt/dlib -I/home/makoto/opt/NNPACK-darknet/include
+COMMON+= -DGPU -I/usr/local/cuda/include/
 CFLAGS+= -DGPU
 ifeq ($(OS),Darwin) #MAC
 LDFLAGS+= -L/usr/local/cuda/lib -lcuda -lcudart -lcublas -lcurand
 else
-LDFLAGS+= -L/home/makoto/opt/dlib -L/home/makoto/opt/NNPACK-darknet/lib -ldlib -lnnpack -L/usr/local/cuda/lib64 -lcuda -lcudart -lcublas -lcurand
+LDFLAGS+= -L/usr/local/cuda/lib64 -lcuda -lcudart -lcublas -lcurand
 endif
 endif
 
