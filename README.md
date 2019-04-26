@@ -1,4 +1,4 @@
-# facenet-darknet-inference
+# facenet-darknet
 Face recognition using facenet
 
 **1. Intro**
