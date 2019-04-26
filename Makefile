@@ -62,7 +62,7 @@ CPP=g++
 NVCC=nvcc
 OPTS=-Ofast
 LDFLAGS= -lm -pthread -ldlib -lnnpack
-COMMON= -I./src -I./darknet_src/include/ -I./darknet_src/3rdparty/stb/include
+COMMON= -I./src -I./darknet_src/include/
 COMMON+= -I$(DLIB_HEADER_DIR) -I$(NNPACK_HEADER_DIR)
 CFLAGS=-Wall -Wfatal-errors -Wno-unused-result -Wno-unknown-pragmas -fPIC
 
